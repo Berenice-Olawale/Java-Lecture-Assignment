@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForexVision | Home</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #101c35;
+            color: white;
+            padding: 22px 8%;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #69d6bd;
+        }
+
+        .hero {
+            padding: 75px 8%;
+            background: linear-gradient(120deg, #162746, #236b78);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            line-height: 1.7;
+        }
+
+        .content {
+            padding: 35px 8%;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #17203312;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card a {
+            color: #087f8c;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #101c35;
+            color: white;
+            text-align: center;
+            padding: 24px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">ForexVision</div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/soap">SOAP</a>
+        <a href="/forex/account">Forex Account</a>
+        <a href="/forex/actual-price">Actual Price</a>
+        <a href="/forex/historical-price">Historical Prices</a>
+        <a href="/forex/open">Forex Open</a>
+        <a href="/forex/positions">Forex Positions</a>
+        <a href="/forex/close">Forex Close</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>Your gateway to the Forex market</h1>
+        <p>
+            Welcome to ForexVision, a currency trading information
+            platform. Explore account information, current exchange
+            prices and historical market data in one place.
+        </p>
+    </section>
+
+    <section class="content">
+        <h2>Explore the platform</h2>
+
+        <div class="cards">
+            <article class="card">
+                <h3>Account Overview</h3>
+                <p>View your Forex trading account information.</p>
+                <a href="/forex/account">View account →</a>
+            </article>
+
+            <article class="card">
+                <h3>Actual Prices</h3>
+                <p>Check current bid and ask prices for currency pairs.</p>
+                <a href="/forex/actual-price">Check prices →</a>
+            </article>
+
+            <article class="card">
+                <h3>Historical Prices</h3>
+                <p>Explore historical price movements across time intervals.</p>
+                <a href="/forex/historical-price">View history →</a>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div>ForexVision — Java Applications Homework</div>
+    <div>Developed by Berenice Olawale and Ben Zouitine Meriem</div>
+    <div>Neptun codes: I4G9NE · EA6MCH</div>
+</footer>
+
+</body>
+</html>
