@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ForexVision | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
         * {
             box-sizing: border-box;
@@ -100,58 +101,145 @@
 <header>
     <div class="brand">ForexVision</div>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/soap">SOAP</a>
-        <a href="/forex/account">Forex Account</a>
-        <a href="/forex/actual-price">Actual Price</a>
-        <a href="/forex/historical-price">Historical Prices</a>
-        <a href="/forex/open">Forex Open</a>
-        <a href="/forex/positions">Forex Positions</a>
-        <a href="/forex/close">Forex Close</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">ForexVision</a>
+
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#forexNavbar"
+                    aria-controls="forexNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="forexNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/soap">SOAP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/account">Forex Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/actual-price">Actual Price</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/historical-price">Historical Prices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/open">Forex Open</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/positions">Forex Positions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forex/close">Forex Close</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
 </header>
 
 <main>
-    <section class="hero">
-        <h1>Your gateway to the Forex market</h1>
-        <p>
-            Welcome to ForexVision, a currency trading information
-            platform. Explore account information, current exchange
-            prices and historical market data in one place.
-        </p>
+
+    <section class="container my-5">
+        <div class="p-5 rounded-4 text-center text-white shadow"
+             style="background: linear-gradient(135deg, #0b1f3a, #1769aa);">
+
+            <h1 class="display-5 fw-bold mb-3">
+                Your gateway to the Forex market
+            </h1>
+
+            <p class="lead mb-0 mx-auto" style="max-width: 750px;">
+                Welcome to ForexVision, a currency trading information
+                platform. Explore account information, current exchange
+                prices and historical market data in one place.
+            </p>
+
+        </div>
     </section>
+
 
     <section class="content">
         <h2>Explore the platform</h2>
 
-        <div class="cards">
-            <article class="card">
-                <h3>Account Overview</h3>
-                <p>View your Forex trading account information.</p>
-                <a href="/forex/account">View account →</a>
-            </article>
 
-            <article class="card">
-                <h3>Actual Prices</h3>
-                <p>Check current bid and ask prices for currency pairs.</p>
-                <a href="/forex/actual-price">Check prices →</a>
-            </article>
+        <div class="container my-5">
+            <div class="row g-4">
 
-            <article class="card">
-                <h3>Historical Prices</h3>
-                <p>Explore historical price movements across time intervals.</p>
-                <a href="/forex/historical-price">View history →</a>
-            </article>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title">Account Overview</h3>
+                            <p class="card-text">
+                                View your Forex trading account information.
+                            </p>
+                            <a href="/forex/account" class="btn btn-primary">
+                                View account →
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title">Actual Prices</h3>
+                            <p class="card-text">
+                                Check current bid and ask prices for currency pairs.
+                            </p>
+                            <a href="/forex/actual-price" class="btn btn-primary">
+                                Check prices →
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title">Historical Prices</h3>
+                            <p class="card-text">
+                                Explore historical price movements across time intervals.
+                            </p>
+                            <a href="/forex/historical-price" class="btn btn-primary">
+                                View history →
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
         </div>
+
     </section>
 </main>
 
-<footer>
-    <div>ForexVision — Java Applications Homework</div>
-    <div>Developed by Berenice Olawale and Ben Zouitine Meriem</div>
-    <div>Neptun codes: I4G9NE · EA6MCH</div>
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-2">
+            Developed by <strong>Berenice Olawale</strong> and
+            <strong>Ben Zouitine Meriem</strong>
+        </p>
+
+        <p class="mb-0 text-white-50">
+            Neptun codes: Berenice – I4G9NE | Meriem – EA6MCH
+        </p>
+    </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
