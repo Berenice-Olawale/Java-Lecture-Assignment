@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Historical prices')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-history')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-4">Historical prices</h1>
+
+    <form method="get" th:action="@{/forex/historical-price}" class="row g-3 align-items-end mb-4">
+        <div class="col-sm-6 col-md-4">
+            <label for="instrument" class="form-label">Instrument</label>
+            <select id="instrument" name="instrument" class="form-select">
+                <option th:each="i : ${instruments}" th:value="${i}" th:text="${i}"
+                        th:selected="${i == selectedInstrument}">EUR_USD</option>
+            </select>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <label for="granularity" class="form-label">Granularity</label>
+            <select id="granularity" name="granularity" class="form-select">
+                <option th:each="g : ${granularities}" th:value="${g.value}" th:text="${g.label}"
+                        th:selected="${g.value == selectedGranularity}">D – daily</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Show last 10</button>
+        </div>
+    </form>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="card shadow-sm" th:if="${candles}">
+        <div class="card-header fw-bold">
+            Last <span th:text="${#lists.size(candles)}">10</span> candles (mid prices) –
+            <span th:text="${selectedInstrument}">EUR_USD</span>,
+            <span th:text="${selectedGranularity}">D</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped mb-0">
+                <thead>
+                <tr>
+                    <th>Time (UTC)</th><th>Open</th><th>High</th><th>Low</th><th>Close</th>
+                    <th>Volume</th><th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${candles}">
+                    <td th:text="${c.time}"></td>
+                    <td th:text="${c.open}"></td>
+                    <td th:text="${c.high}"></td>
+                    <td th:text="${c.low}"></td>
+                    <td th:text="${c.close}"></td>
+                    <td th:text="${c.volume}"></td>
+                    <td>
+                        <span th:class="${c.complete} ? 'badge text-bg-success' : 'badge text-bg-warning'"
+                              th:text="${c.complete} ? 'complete' : 'in progress'"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Shared parts of every page: <head>, navbar, footer, scripts.
+     Pages include them with th:replace="~{fragments/layout :: name}" -->
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' | ForexVision'">ForexVision</title>
+    <!-- Free responsive theme: "Flatly" from Bootswatch (Bootstrap 5 theme, MIT licence).
+         To try another one, change "flatly" to e.g. "lux", "cosmo", "darkly", "cyborg". -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3/dist/flatly/bootstrap.min.css">
+</head>
+
+<body>
+
+<nav th:fragment="navbar(active)" class="navbar navbar-expand-lg bg-primary sticky-top" data-bs-theme="dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" th:href="@{/}">ForexVision</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'home'} ? 'active'" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'soap'} ? 'active'" th:href="@{/soap}">SOAP</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:classappend="${#strings.startsWith(active, 'forex')} ? 'active'"
+                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Forex</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/forex/account}">Account</a></li>
+                        <li><a class="dropdown-item" th:href="@{/forex/actual-price}">Actual price</a></li>
+                        <li><a class="dropdown-item" th:href="@{/forex/historical-price}">Historical prices</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{/forex/open}">Open position</a></li>
+                        <li><a class="dropdown-item" th:href="@{/forex/positions}">Positions</a></li>
+                        <li><a class="dropdown-item" th:href="@{/forex/close}">Close position</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:classappend="${active == 'test'} ? 'active'" th:href="@{/test}">Test</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<footer th:fragment="footer" class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-2">
+            Developed by <strong>Berenice Olawale</strong> and
+            <strong>Ben Zouitine Meriem</strong>
+        </p>
+        <p class="mb-0 text-white-50">
+            Neptun codes: Berenice – I4G9NE | Meriem – EA6MCH
+        </p>
+    </div>
+</footer>
+
+<script th:fragment="scripts" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

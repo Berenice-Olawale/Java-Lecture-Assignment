@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Actual price')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-price')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-4">Actual price</h1>
+
+    <form method="get" th:action="@{/forex/actual-price}" class="row g-3 align-items-end mb-4">
+        <div class="col-sm-6 col-md-4">
+            <label for="instrument" class="form-label">Instrument</label>
+            <select id="instrument" name="instrument" class="form-select">
+                <option th:each="i : ${instruments}" th:value="${i}" th:text="${i}"
+                        th:selected="${i == selectedInstrument}">EUR_USD</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Get price</button>
+        </div>
+    </form>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="card shadow-sm" th:if="${quote}">
+        <div class="card-header fw-bold" th:text="${quote.instrument}">EUR_USD</div>
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <tbody>
+                <tr><th scope="row">Bid (you sell at)</th><td th:text="${quote.bid}"></td></tr>
+                <tr><th scope="row">Ask (you buy at)</th><td th:text="${quote.ask}"></td></tr>
+                <tr><th scope="row">Spread</th><td th:text="${quote.spread}"></td></tr>
+                <tr><th scope="row">Price time</th><td th:text="${quote.time}"></td></tr>
+                <tr>
+                    <th scope="row">Market</th>
+                    <td>
+                        <span th:class="${quote.tradeable} ? 'badge text-bg-success' : 'badge text-bg-secondary'"
+                              th:text="${quote.tradeable} ? 'tradeable' : 'not tradeable (market closed?)'"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>

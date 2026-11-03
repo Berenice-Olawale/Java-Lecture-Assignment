@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Test – calculator')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('test')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-4">Test menu – four-operation calculator</h1>
+
+    <form method="post" th:action="@{/test}" th:object="${form}" class="row g-3 align-items-end mb-4">
+        <div class="col-sm-4">
+            <label for="number1" class="form-label">First number</label>
+            <input id="number1" type="number" step="any" class="form-control" th:field="*{number1}" required>
+        </div>
+        <div class="col-sm-4">
+            <label for="operation" class="form-label">Operation</label>
+            <select id="operation" class="form-select" th:field="*{operation}">
+                <option value="add">+ Addition</option>
+                <option value="subtract">− Subtraction</option>
+                <option value="multiply">× Multiplication</option>
+                <option value="divide">÷ Division</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label for="number2" class="form-label">Second number</label>
+            <input id="number2" type="number" step="any" class="form-control" th:field="*{number2}" required>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </div>
+    </form>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="alert alert-success" th:if="${result != null}">
+        Result: <strong th:text="${result}">5.0</strong>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>

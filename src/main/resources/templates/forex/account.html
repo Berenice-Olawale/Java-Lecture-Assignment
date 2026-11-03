@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Forex account')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-account')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-4">Forex account</h1>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="card shadow-sm" th:if="${account}">
+        <div class="table-responsive">
+            <table class="table table-striped mb-0">
+                <tbody>
+                <tr><th scope="row">Account ID</th><td th:text="${account.id}"></td></tr>
+                <tr><th scope="row">Alias</th><td th:text="${account.alias}"></td></tr>
+                <tr><th scope="row">Currency</th><td th:text="${account.currency}"></td></tr>
+                <tr><th scope="row">Balance</th><td th:text="${account.balance}"></td></tr>
+                <tr><th scope="row">NAV (net asset value)</th><td th:text="${account.nav}"></td></tr>
+                <tr><th scope="row">Unrealized P/L</th><td th:text="${account.unrealizedPL}"></td></tr>
+                <tr><th scope="row">Realized P/L</th><td th:text="${account.pl}"></td></tr>
+                <tr><th scope="row">Margin used</th><td th:text="${account.marginUsed}"></td></tr>
+                <tr><th scope="row">Margin available</th><td th:text="${account.marginAvailable}"></td></tr>
+                <tr><th scope="row">Open trades</th><td th:text="${account.openTradeCount}"></td></tr>
+                <tr><th scope="row">Open positions</th><td th:text="${account.openPositionCount}"></td></tr>
+                <tr><th scope="row">Created</th><td th:text="${account.createdTime}"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>
