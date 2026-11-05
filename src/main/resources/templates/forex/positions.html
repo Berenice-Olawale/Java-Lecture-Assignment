@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Open positions')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-positions')}"></nav>
+
+<main class="container my-5">
+  <h1 class="mb-4">Open positions</h1>
+
+  <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+  <div class="alert alert-info" th:if="${trades != null and trades.isEmpty()}">
+    There are no open positions on this account.
+    <a th:href="@{/forex/open}" class="alert-link">Open one</a>
+  </div>
+
+  <div class="card shadow-sm" th:if="${trades != null and !trades.isEmpty()}">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle mb-0">
+        <thead>
+        <tr>
+          <th>Trade ID</th><th>Instrument</th><th>Open time (UTC)</th>
+          <th>Direction</th><th class="text-end">Units</th>
+          <th class="text-end">Open price</th><th class="text-end">Unrealized P/L</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${trades}">
+          <td th:text="${t.id}">123</td>
+          <td th:text="${t.instrument}">EUR_USD</td>
+          <td th:text="${t.openTime}">2026-01-01 10:00:00 UTC</td>
+          <td>
+                        <span th:class="${t.isLong} ? 'badge text-bg-success' : 'badge text-bg-danger'"
+                              th:text="${t.isLong} ? 'Long' : 'Short'">Long</span>
+          </td>
+          <td class="text-end" th:text="${t.units}">5</td>
+          <td class="text-end" th:text="${t.price}">1.08</td>
+          <td class="text-end" th:text="${t.unrealizedPL}">0.00</td>
+          <td class="text-end">
+            <form method="post" th:action="@{/forex/close}" class="d-inline">
+              <input type="hidden" name="tradeId" th:value="${t.id}">
+              <button type="submit" class="btn btn-sm btn-outline-danger">Close</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>
