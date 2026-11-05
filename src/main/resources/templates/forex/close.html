@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Close position')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-close')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-2">Close position</h1>
+    <p class="text-muted mb-4">
+        Enter the trade ID (see <a th:href="@{/forex/positions}">Open positions</a>).
+        The trade is closed completely at the market price.
+    </p>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="alert alert-success" th:if="${closed}">
+        <h2 class="h5">Position closed</h2>
+        <ul class="mb-0">
+            <li>Trade ID: <strong th:text="${closed.tradeId}">123</strong></li>
+            <li>Units closed: <span th:text="${closed.units}">-5</span></li>
+            <li>Closing price: <span th:text="${closed.price}">1.08</span></li>
+            <li>Realized P/L: <strong th:text="${closed.realizedPL}">0.00</strong></li>
+        </ul>
+    </div>
+
+    <form method="post" th:action="@{/forex/close}" class="row g-3 align-items-end">
+        <div class="col-sm-6 col-md-3">
+            <label for="tradeId" class="form-label">Trade ID</label>
+            <input type="number" id="tradeId" name="tradeId" class="form-control" min="1" step="1" required>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-danger">Close position</button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>
