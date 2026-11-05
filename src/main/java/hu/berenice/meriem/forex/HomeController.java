@@ -21,7 +21,8 @@ public class HomeController {
             new MenuItem("Open a Position", "Go long or short at the market price.", "/forex/open"),
             new MenuItem("Open Positions", "See every position currently open on the account.", "/forex/positions"),
             new MenuItem("Close a Position", "Close a trade by its trade ID at the market price.", "/forex/close"),
-            new MenuItem("Test: Calculator", "A small form application covered by JUnit and MockMvc tests.", "/test")
+            new MenuItem("Test: Calculator", "A small form application covered by JUnit and MockMvc tests.", "/test"),
+            new MenuItem("React: Notebook CRUD", "Add, edit and delete notebooks.", "/react")
     );
 
     @GetMapping("/")
