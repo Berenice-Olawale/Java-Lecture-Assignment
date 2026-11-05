@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Open position')}"></head>
+<body>
+
+<nav th:replace="~{fragments/layout :: navbar('forex-open')}"></nav>
+
+<main class="container my-5">
+    <h1 class="mb-2">Open position</h1>
+    <p class="text-muted mb-4">
+        Choose an instrument and the quantity. A positive number opens a <strong>long</strong>
+        position (buy), a negative number opens a <strong>short</strong> position (sell).
+        The position is opened at the market price. Practice account only.
+    </p>
+
+    <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+
+    <div class="alert alert-success" th:if="${opened}">
+        <h2 class="h5">Position opened</h2>
+        <ul class="mb-2">
+            <li>Instrument: <strong th:text="${opened.instrument}">EUR_USD</strong></li>
+            <li>Units: <strong th:text="${opened.units}">5</strong></li>
+            <li>Price: <strong th:text="${opened.price}">1.08</strong></li>
+            <li>Time: <span th:text="${opened.time}">2026-01-01 10:00:00 UTC</span></li>
+            <li>Trade ID: <strong th:text="${opened.tradeId}">123</strong></li>
+        </ul>
+        <a th:href="@{/forex/positions}" class="alert-link">See all open positions</a>
+    </div>
+
+    <form method="post" th:action="@{/forex/open}" class="row g-3 align-items-end">
+        <div class="col-sm-6 col-md-4">
+            <label for="instrument" class="form-label">Instrument</label>
+            <select id="instrument" name="instrument" class="form-select">
+                <option th:each="i : ${instruments}" th:value="${i}" th:text="${i}">EUR_USD</option>
+            </select>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <label for="units" class="form-label">Units (long +, short −)</label>
+            <input type="number" id="units" name="units" class="form-control" value="5"
+                   th:min="${-maxUnits}" th:max="${maxUnits}" step="1" required>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Open position</button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:replace="~{fragments/layout :: scripts}"></script>
+</body>
+</html>
