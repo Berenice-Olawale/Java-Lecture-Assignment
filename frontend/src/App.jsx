@@ -125,7 +125,7 @@ export default function App() {
       <footer className="bg-dark text-white text-center py-4 mt-5">
         <div className="container">
           <p className="mb-2">
-            Developed by <strong>Berenice Olawale</strong> and <strong>Ben Zouitine Meriem</strong>
+            Developed by <strong>Berenice Olawale</strong> and <strong>Meriem Ben Zouitine</strong>
           </p>
           <p className="mb-0 text-white-50">Neptun codes: Berenice – I4G9NE | Meriem – EA6MCH</p>
         </div>
